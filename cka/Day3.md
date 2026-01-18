@@ -1,4 +1,4 @@
-Day 3(구성관리: ConfigMap/Secret, 환경변수, 볼륨 마운트) 실습 예제 30개야. 모두 kubectl 기준.
+Day 3(구성관리: ConfigMap/Secret, 환경변수, 볼륨 마운트) 실습 예제 20개야. 모두 kubectl 기준.
 
   1. ConfigMap 생성: --from-literal
     - k create cm app-cm --from-literal=APP_ENV=prod
@@ -44,23 +44,3 @@ Day 3(구성관리: ConfigMap/Secret, 환경변수, 볼륨 마운트) 실습 예
     - volumeMounts: mountPath: /etc/secret
   20. Secret 마운트에 defaultMode 설정
     - volumes: secret: secretName: app-secret, defaultMode: 0400
-  21. Secret type=kubernetes.io/dockerconfigjson 생성
-    - k create secret docker-registry regcred --docker-server=<server> --docker-username=<u> --docker-password=<p> --docker-email=<e>
-  22. imagePullSecret로 private image pull 시도
-    - Pod spec: imagePullSecrets: - name: regcred
-  23. ConfigMap/Secret을 동시에 env로 주입
-    - envFrom: configMapRef + secretRef
-  24. ConfigMap/Secret을 동시에 볼륨으로 마운트
-    - volumes 두 개 추가 후 서로 다른 mountPath
-  25. 동일 키 충돌 시 우선순위 확인(env vs envFrom)
-    - env가 envFrom보다 우선함 확인
-  26. Pod 재시작 없이 ConfigMap 마운트 업데이트 확인
-    - CM 수정 후 파일 내용 변경 확인
-  27. Secret 업데이트 후 마운트 파일 반영 확인
-    - Secret 수정 후 파일 내용 변경 확인
-  28. Secret을 volumeMounts.readOnly: true로 마운트
-    - volumeMounts: readOnly: true
-  29. kubectl describe pod로 env/volumes 확인
-    - k describe pod <pod-name>
-  30. Day3 리소스 정리: ConfigMap/Secret/Pod 일괄 삭제
-    - k delete cm,secret,pod --all

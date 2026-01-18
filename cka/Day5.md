@@ -1,4 +1,4 @@
-Day 5(스토리지: PV/PVC/StorageClass, 볼륨 타입) 실습 예제 30개야.
+Day 5(스토리지: PV/PVC/StorageClass, 볼륨 타입) 실습 예제 20개야.
 
   1. StorageClass 목록 확인
     - k get sc
@@ -40,25 +40,3 @@ Day 5(스토리지: PV/PVC/StorageClass, 볼륨 타입) 실습 예제 30개야.
     - volumes: projected: sources: configMap + secret
   20. subPath 마운트 실습
     - volumeMounts: subPath 설정
-  21. volumeMounts.readOnly 확인
-    - volumeMounts: readOnly: true
-  22. PVC에 selector 사용(레이블 PV 매칭)
-    - PVC spec.selector.matchLabels 설정
-  23. StatefulSet + PVC 템플릿 실습
-    - k apply -f sts-pvc.yaml
-  24. StorageClass 파라미터 확인
-    - k get sc <name> -o yaml
-  25. volumeBindingMode 차이 확인
-    - StorageClass volumeBindingMode 확인
-  26. local PV 사용 시 nodeAffinity 확인
-    - PV spec.nodeAffinity 확인
-  27. PV finalizers 확인 및 제거 실습
-    - k get pv <pv-name> -o yaml
-    - k patch pv <pv-name> -p '{"metadata":{"finalizers":[]}}'
-  28. PVC 삭제 후 PV 상태 확인
-    - k delete pvc <pvc-name>
-    - k get pv <pv-name>
-  29. reclaimPolicy Retain 시 수동 정리 실습
-    - PV 상태 Released 확인 후 수동 삭제
-  30. Day5 리소스 정리(PV/PVC/Pod/SC)
-    - k delete pv,pvc,pod --all

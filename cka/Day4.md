@@ -1,4 +1,4 @@
-Day 4(서비스/네트워킹: Service/Ingress/NetworkPolicy, DNS) 실습 예제 30개야.
+Day 4(서비스/네트워킹: Service/Ingress/NetworkPolicy, DNS) 실습 예제 20개야.
 
   1. Deployment 2개 생성(app=web, app=api)
     - k create deploy web --image=nginx:1.25
@@ -48,23 +48,3 @@ Day 4(서비스/네트워킹: Service/Ingress/NetworkPolicy, DNS) 실습 예제 
     - Pod IP로 접근, 재시작 시 IP 변경 확인
   20. DNS 확인: nslookup으로 Service 이름 조회
     - k run dns --image=busybox --restart=Never -- nslookup web-svc
-  21. DNS 확인: dig로 FQDN 조회
-    - k run dns --image=busybox --restart=Never -- dig web-svc.default.svc.cluster.local
-  22. Pod에서 curl로 Service 접근 확인
-    - k run curl --image=busybox --restart=Never -- wget -qO- http://web-svc
-  23. Pod에서 다른 네임스페이스 서비스 접근(svc.ns.svc.cluster.local)
-    - wget -qO- http://web-svc.<ns>.svc.cluster.local
-  24. NetworkPolicy 기본 deny 생성
-    - k apply -f np-deny-all.yaml
-  25. NetworkPolicy로 특정 라벨 Pod만 허용
-    - k apply -f np-allow-label.yaml
-  26. NetworkPolicy로 특정 네임스페이스만 허용
-    - k apply -f np-allow-namespace.yaml
-  27. NetworkPolicy로 특정 포트만 허용
-    - k apply -f np-allow-port.yaml
-  28. egress 차단 테스트
-    - k apply -f np-egress-deny.yaml
-  29. Policy 적용 전후 통신 비교
-    - 적용 전/후 curl 결과 비교
-  30. Day4 리소스 정리(Service/Ingress/NetworkPolicy/Deployments)
-    - k delete svc,ingress,networkpolicy,deploy --all
